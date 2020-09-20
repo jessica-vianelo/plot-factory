@@ -1,13 +1,11 @@
-# sidebarpanelitem
 
-sideBarPanelItem <- function(id) {
+sideBarPanelItem <- function(id){
   ns <- NS(id)
   
-  uiOutput(ns("item"))
-  
+  uiOutput(ns("item")) # nomeando
 }
 
-sideBarPanelItemServer <- function(id, label, ref) {
+sideBarPanelItemServer <- function(id, label, ref){ # label é o nome da pag
   moduleServer(
     id,
     function(input, output, session){
@@ -16,13 +14,15 @@ sideBarPanelItemServer <- function(id, label, ref) {
           class = "sideBarPanelItem",
           img(src = "./assets/icons/grayTriangle.svg"),
           tags$a(
-            label, 
+            label,
             id = session$ns("button"),
-            class = if(is_page(ref)) "action-button active" else "action-button"
+            class = if(is_page(ref)) "action_button active" else "action_button"
+            # Se estou na pag. de referência o marcador fica ativo
           )
         )
       })
-      onclick("button", if(!is_page(ref)) change_page(ref))
+     # onclick("button", if(!is_page(ref)) change_page(ref))
     }
   )
 }
+
